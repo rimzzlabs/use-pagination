@@ -1,0 +1,16 @@
+echo '(💡) info: welcome to pre-commit hooks, where your changes will be checked first before it being process to the next step'
+echo '(💡) info: this possible by Husky, a git hooks library for git'
+echo '(💡) info: before committing your changes, the app will lint and format your `staged` changes'
+
+
+echo '(⏳) process: running lint-staged'
+
+pnpm lint-staged ||
+  (
+    echo '(⛔️) error: failed to lint and format your changes, the changes you made has an error'
+    false
+  )
+
+
+echo '(💡) info: linted and formatted changes without error'
+echo '(💡) info: committing your changes...'

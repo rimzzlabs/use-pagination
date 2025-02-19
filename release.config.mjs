@@ -3,7 +3,7 @@
  */
 export default {
   repositoryUrl: 'https://github.com/rimzzlabs/use-pagination.git',
-  branches: ['master', 'next'],
+  branches: ['main'],
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',

@@ -13,10 +13,7 @@
     "rootDir": "src",
     "emitDeclarationOnly": true,
     "strictPropertyInitialization": false,
-    "verbatimModuleSyntax": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "verbatimModuleSyntax": true
   },
   "include": [
     "src/**/*",

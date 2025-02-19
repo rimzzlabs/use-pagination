@@ -1,6 +1,5 @@
-import { makeArray, toInt } from '@/lib/utils'
-
 import type { UsePaginationArgs, UsePaginationRange } from './typed'
+import { makeArray, toInt } from './utils'
 
 function getDefaultPagination(): Array<UsePaginationRange> {
   return [

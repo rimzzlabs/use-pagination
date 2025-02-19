@@ -1,14 +1,11 @@
 name: Semantic Release
-
 on:
   push:
     branches:
       - main
-
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,6 +21,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Pull latest changes
+        run: git pull origin main --rebase
 
       - name: Semantic Release
         env:

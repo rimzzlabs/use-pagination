@@ -7,7 +7,7 @@
   "module": "./dist/index.mjs",
   "private": false,
   "files": [
-    "./dist",
+    "dist",
     "LICENSE.md"
   ],
   "publishConfig": {

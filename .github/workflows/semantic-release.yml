@@ -39,7 +39,11 @@ jobs:
       - name: Pull latest changes
         run: git pull origin main --rebase
 
-      # Step 7: Run Semantic Release
+      # Step 7: build the pkg
+      - name: Build the package
+        run: pnpm run build
+
+      # Step 8: Run Semantic Release
       - name: Semantic Release
         env:
           DEBUG: semantic-release:* # Enable debugging for Semantic Release

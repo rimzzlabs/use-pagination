@@ -10,6 +10,9 @@
     "./dist",
     "LICENSE.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "tsup --watch",
     "build": "pnpm cleanup && tsup",

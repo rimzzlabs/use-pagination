@@ -1,33 +1,48 @@
 name: Semantic Release
+
 on:
   push:
     branches:
-      - main
+      - main # Trigger only on pushes to the main branch
+
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout the code with full commit history
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch the entire commit history to avoid shallow clone issues
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
+          node-version: 20 # Use Node.js version 20
+          registry-url: https://registry.npmjs.org/ # Configure npm registry
 
+      # Step 3: Install pnpm globally
       - name: Install pnpm
         run: npm install -g pnpm
 
+      # Step 4: Install dependencies using pnpm
       - name: Install dependencies
         run: pnpm install
 
+      # Step 5: Stash any unstaged changes to ensure a clean workspace
+      - name: Stash changes
+        run: git stash push --include-untracked || echo "No changes to stash"
+
+      # Step 6: Pull the latest changes from the main branch
       - name: Pull latest changes
         run: git pull origin main --rebase
 
+      # Step 7: Run Semantic Release
       - name: Semantic Release
         env:
-          DEBUG: semantic-release:*
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DEBUG: semantic-release:* # Enable debugging for Semantic Release
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # GitHub token for authentication
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # npm token for publishing
         run: pnpm dlx semantic-release
